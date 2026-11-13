@@ -14,6 +14,7 @@ watch(
   () => localeStore.currentLocale,
   (newLocale) => {
     locale.value = newLocale
+    document.documentElement.lang = newLocale
   },
   { immediate: true }
 )

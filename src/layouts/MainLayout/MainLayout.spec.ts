@@ -102,6 +102,7 @@ describe('MainLayout', () => {
   afterEach(() => {
     localStorage.clear()
     document.documentElement.classList.remove('dark')
+    document.documentElement.lang = 'es'
   })
 
   it('renders navigation, page content, and the footer in Spanish', () => {
@@ -123,12 +124,14 @@ describe('MainLayout', () => {
     const selector = wrapper.findComponent(LocaleSelectorStub)
 
     expect(selector.props('modelValue')).toBe('es')
+    expect(document.documentElement.lang).toBe('es')
 
     selector.vm.$emit('change', 'en')
     await nextTick()
 
     expect(localeStore.currentLocale).toBe('en')
     expect(i18n.global.locale.value).toBe('en')
+    expect(document.documentElement.lang).toBe('en')
     expect(wrapper.text()).toContain('Home')
     expect(wrapper.text()).toContain('Contact')
 

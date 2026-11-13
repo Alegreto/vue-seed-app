@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
-    "lint": "oxlint && eslint . --fix",
+    "lint": "oxlint && eslint . --ignore-pattern 'coverage/**'",
+    "lint:fix": "oxlint && eslint . --fix --ignore-pattern 'coverage/**'",
     "lint:styles": "stylelint \"src/**/*.{css,scss,vue}\"",
     "test:unit": "vitest --run",
     "test:watch": "vitest",
