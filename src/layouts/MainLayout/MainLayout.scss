@@ -1,0 +1,104 @@
+$max-width: 1000px;
+
+// 1. Estilos globales para el documento completo (evita bordes blancos alrededor del layout)
+:global(html),
+:global(body) {
+  margin: 0;
+  padding: 0;
+  background-color: var(--el-bg-color);
+  color: var(--el-text-color-primary);
+  font-family: var(--el-font-family);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+// 2. Contenedor principal del Layout
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--el-bg-color);
+  color: var(--el-text-color-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+
+  .header {
+    background-color: var(--el-bg-color-overlay);
+    border-bottom: 1px solid var(--el-border-color);
+    color: var(--el-text-color-primary);
+    padding: 1rem 0;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+
+    .header-inner {
+      max-width: $max-width;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .logo {
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: var(--el-text-color-primary);
+      }
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .nav {
+        display: flex;
+        gap: 1.5rem;
+
+        .nav-link {
+          color: var(--el-text-color-regular);
+          text-decoration: none;
+          font-weight: 500;
+          padding-bottom: 0.2rem;
+          transition: color 0.2s ease;
+
+          &:hover {
+            color: var(--el-color-primary);
+          }
+
+          &.router-link-exact-active {
+            color: var(--el-color-primary);
+            border-bottom: 2px solid var(--el-color-primary);
+          }
+        }
+      }
+    }
+  }
+
+  .main-content {
+    flex: 1;
+    max-width: $max-width;
+    width: 100%;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    box-sizing: border-box;
+    color: var(--el-text-color-primary);
+
+    // Asegura que encabezados y párrafos dentro del <slot /> hereden y adapten bien su contraste
+    :deep(h1),
+    :deep(h2),
+    :deep(h3) {
+      color: var(--el-text-color-primary);
+    }
+
+    :deep(p) {
+      color: var(--el-text-color-regular);
+    }
+  }
+
+  .footer {
+    background-color: var(--el-fill-color-light);
+    border-top: 1px solid var(--el-border-color);
+    text-align: center;
+    padding: 1rem 0;
+    color: var(--el-text-color-secondary);
+    font-size: 0.9rem;
+    transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  }
+}
